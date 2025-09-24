@@ -14,7 +14,7 @@ if (typeof dati === "string") {
   const datiMaiuscolo = dati.toUpperCase()
   console.log(datiMaiuscolo)
 } else if (typeof dati === "boolean") {
-  console.log(dati)
+  console.log(dati === true ? "si" : "no")
 } else if (typeof dati === "number") {
   const risultato = dati * 2
   console.log(risultato)
@@ -44,7 +44,7 @@ type Dipendente = {
 const user: Dipendente = {
   nome: "Mauro",
   cognome: "Ana",
-  annoNascita: 32,
+  annoNascita: 1992,
   sesso: "m",
   anniDiServizio: [2016, 2017, 2018, 2019]
 }
@@ -61,3 +61,34 @@ console.log(user)
 // teamSize → Il numero di persone nel team gestito dal Project Manager (può essere null se non ha ancora un team assegnato).
 // budgetGestito → Il totale del budget annuale gestito dal PM (opzionale).
 // stakeholderPrincipali → Un array di stringhe con i nomi dei principali stakeholder con cui il PM collabora (può essere vuoto).
+
+type EstensioneDipendente = Dipendente & {
+  Developer: {
+    livelloEsperienza: "Junior" | "Mid" | "Senior",
+    linguaggi?: ("javascript" | "C++" | "Java" | "Rust")[],
+    certificazioni: string[] | undefined
+  }
+  ProjectManager: {
+    teamSize: number | null,
+    budgetTotale?: number,
+    stakeholderPrincipali: string[] | undefined
+  }
+}
+
+const assunto: EstensioneDipendente = {
+  nome: "Mauro",
+  cognome: "Ana",
+  annoNascita: 32,
+  sesso: "m",
+  anniDiServizio: [2016, 2017, 2018, 2019],
+  Developer: {
+    livelloEsperienza: "Junior",
+    linguaggi: ["javascript"],
+    certificazioni: undefined
+  },
+  ProjectManager: {
+    teamSize: 3,
+    stakeholderPrincipali: undefined
+  }
+}
+console.log(assunto)
